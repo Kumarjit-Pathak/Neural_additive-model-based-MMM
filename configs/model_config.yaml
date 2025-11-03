@@ -1,0 +1,68 @@
+# Model Configuration for Neural Additive Model
+
+model:
+  name: "HierarchicalNAM"
+  version: "1.0"
+
+  # Feature configurations - SINGLE LAYER FOR EXPLAINABILITY
+  features:
+    own_price:
+      type: "monotonic_negative"
+      hidden_dims: [16]  # Single layer for interpretability
+      dropout: 0.0
+
+    cross_price:
+      type: "monotonic_positive"
+      hidden_dims: [16]  # Single layer for interpretability
+      dropout: 0.0
+
+    discount_pct:
+      type: "monotonic_positive"
+      hidden_dims: [16]  # Single layer for interpretability
+      dropout: 0.0
+
+    TV_adstock:
+      type: "parametric_beta_gamma"  # Already parametric (3 params only)
+
+    Digital_adstock:
+      type: "parametric_beta_gamma"  # Already parametric (3 params only)
+
+    SEM_adstock:
+      type: "parametric_beta_gamma"  # Already parametric (3 params only)
+
+    nps_score:
+      type: "unconstrained"
+      hidden_dims: [16]  # Single layer for interpretability
+      dropout: 0.0
+
+    month_sin:
+      type: "unconstrained"
+      hidden_dims: [8]  # Small single layer for temporal
+
+    month_cos:
+      type: "unconstrained"
+      hidden_dims: [8]  # Small single layer for temporal
+
+    is_festival:
+      type: "unconstrained"
+      hidden_dims: [8]  # Small single layer for binary feature
+
+  # Hierarchical structure
+  hierarchical:
+    enabled: true
+    brand_ids:
+      - "Camera"
+      - "CameraAccessory"
+      - "EntertainmentSmall"
+      - "GameCDDVD"
+      - "GamingHardware"
+
+    hier_weight: 0.7  # Brand vs SKU weighting
+
+  # Model initialization
+  initialization:
+    strategy: "glorot_uniform"
+    beta_gamma:
+      init_a: 1.0
+      init_alpha: 0.5
+      init_beta: 0.1

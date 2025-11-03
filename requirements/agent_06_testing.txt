@@ -1,0 +1,13 @@
+# Agent 6: Test Automation Requirements
+
+# Testing framework
+pytest>=7.4.0
+pytest-cov>=4.1.0
+pytest-mock>=3.11.0
+hypothesis>=6.87.0
+
+# For testing Keras models
+keras>=3.0.0
+jax[cpu]>=0.4.20
+numpy>=1.24.0
+pandas>=2.0.0

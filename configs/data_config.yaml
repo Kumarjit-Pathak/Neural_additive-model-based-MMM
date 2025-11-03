@@ -1,0 +1,89 @@
+# Data Configuration
+
+data:
+  # Data sources
+  sources:
+    sales: "data/raw/Sales.csv"
+    firstfile: "data/raw/firstfile.csv"
+    secondfile: "data/raw/Secondfile.csv"
+    media_investment: "data/raw/MediaInvestment.csv"
+    nps: "data/raw/MonthlyNPSscore.csv"
+    product_list: "data/raw/ProductList.csv"
+    special_sale: "data/raw/SpecialSale.csv"
+
+  # Preprocessing
+  preprocessing:
+    # Missing values
+    missing_values:
+      gmv_strategy: "impute_from_mrp"
+      radio_strategy: "forward_fill_median"
+      other_strategy: "forward_fill_median"
+
+    # Outlier treatment
+    outliers:
+      method: "iqr"
+      threshold: 1.5
+      treatment: "winsorize"
+      percentiles: [1, 99]
+
+    # Multi-collinearity
+    multicollinearity:
+      check_vif: true
+      vif_threshold: 10
+      correlation_threshold: 0.85
+
+  # Feature engineering
+  features:
+    # Adstock transformation
+    adstock:
+      enabled: true
+      decay_rate: 0.7
+      max_lag: 3
+      channels:
+        - TV
+        - Digital
+        - SEM
+        - Radio
+        - Sponsorship
+
+    # Price features
+    price:
+      avg_price: true
+      price_index: true
+      discount_pct: true
+      cross_price: true
+
+    # Temporal features
+    temporal:
+      month_encoding: "cyclical"  # sin/cos
+      time_index: true
+      is_festival: true
+
+    # Brand features
+    brand:
+      nps_lags: [1, 2]
+      nps_change: true
+
+  # Normalization
+  normalization:
+    log_transform:
+      - GMV
+      - total_investment
+      - TV
+      - Digital
+      - SEM
+
+    standard_scale:
+      - avg_price
+      - nps_score
+      - time_index
+
+    minmax_scale:
+      - discount_pct
+
+  # Train/Val/Test split
+  split:
+    method: "time_series"
+    train_end: "2015-12-31"   # 6 months for training (Jul-Dec 2015)
+    val_end: "2016-03-31"     # 3 months for validation (Jan-Mar 2016)
+    test_end: "2016-06-30"    # 3 months for testing (Apr-Jun 2016)

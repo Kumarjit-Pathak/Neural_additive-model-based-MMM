@@ -1,0 +1,46 @@
+constraint_features:
+- Avg_MRP
+- Avg_Discount
+- Avg_Price
+- Discount_Pct
+features:
+  beta_gamma_count: 28
+  feature_types:
+    Affiliates: unconstrained
+    Avg_Discount: monotonic_positive
+    Avg_MRP: monotonic_negative
+    Avg_Price: monotonic_negative
+    Content_Marketing: unconstrained
+    DayOfWeek: unconstrained
+    Digital: unconstrained
+    Discount_Pct: monotonic_positive
+    GMV: unconstrained
+    Month: unconstrained
+    NPS: unconstrained
+    Online_marketing: unconstrained
+    Other: unconstrained
+    Quarter: unconstrained
+    Radio: unconstrained
+    SEM: unconstrained
+    Sponsorship: unconstrained
+    TV: unconstrained
+    Total_Investment: unconstrained
+    Units: unconstrained
+  monotonic_count: 4
+  total_count: 99
+marketing_features:
+- TV_log
+- Digital_log
+- Sponsorship_log
+- Content_Marketing_log
+- Online_marketing_log
+- Affiliates_log
+- SEM_log
+- Radio_log
+- TV_adstock
+- Sponsorship_adstock
+- Content_Marketing_adstock
+- Digital_adstock
+- SEM_adstock
+- Affiliates_adstock
+- Online_marketing_adstock

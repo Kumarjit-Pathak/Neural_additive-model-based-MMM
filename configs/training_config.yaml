@@ -1,0 +1,102 @@
+# Training Configuration
+
+training:
+  # Optimization
+  optimizer: "adam"
+  learning_rate: 0.001
+  weight_decay: 0.00001
+
+  # Scheduling
+  scheduler:
+    type: "reduce_on_plateau"
+    patience: 5
+    factor: 0.5
+    min_lr: 0.000001
+
+  # Batch settings
+  batch_size: 32
+  shuffle: false  # Time series - maintain order
+
+  # Training duration
+  max_epochs: 200  # Extended production run for best convergence
+
+  # Early stopping
+  early_stopping:
+    enabled: true  # Enable for optimal convergence
+    patience: 30  # Higher patience for 200 epochs
+    min_delta: 0.001
+    monitor: "val_loss"
+    restore_best_weights: true
+
+  # Checkpointing
+  checkpoint:
+    enabled: true
+    filepath: "outputs/models/best_model.keras"
+    monitor: "val_loss"
+    save_best_only: true
+
+  # Loss weights
+  loss_weights:
+    lambda_fit: 1.0
+    lambda_constraint: 0.5
+    lambda_hierarchical: 0.3
+    lambda_smooth: 0.1
+
+  # Experiment tracking
+  mlflow:
+    enabled: true
+    experiment_name: "nam_mmm"
+    tracking_uri: "experiments/mlruns"
+
+# Walk-Forward Optimization
+walk_forward:
+  enabled: false  # Disable for faster 200-epoch run, enable separately
+  initial_train_size: 160  # days initial training (more stable)
+  test_size: 10  # days - 10-day holdout as requested
+  step_size: 10  # 10-day step
+  window_type: "expanding"
+
+  # Deployment criteria
+  deployment_criteria:
+    min_overall_r2: 0.75
+    max_r2_std: 0.10
+    max_r2_range: 0.25
+    max_elasticity_cv: 0.30
+
+# Hyperparameter tuning
+hyperparameter_tuning:
+  enabled: true
+  framework: "optuna"
+  n_trials: 50
+  timeout: 7200  # seconds
+
+  search_space:
+    learning_rate:
+      type: "loguniform"
+      low: 0.0001
+      high: 0.01
+
+    hidden_dim_1:
+      type: "int"
+      low: 32
+      high: 128
+
+    hidden_dim_2:
+      type: "int"
+      low: 16
+      high: 64
+
+    dropout:
+      type: "uniform"
+      low: 0.0
+      high: 0.3
+
+    lambda_constraint:
+      type: "uniform"
+      low: 0.1
+      high: 1.0
+
+    lambda_hierarchical:
+      type: "uniform"
+      low: 0.1
+      high: 0.5

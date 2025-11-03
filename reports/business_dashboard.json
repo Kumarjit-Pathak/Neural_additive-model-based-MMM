@@ -1,0 +1,64 @@
+{
+  "current_allocation": {
+    "TV": 500000,
+    "Digital": 300000,
+    "SEM": 200000,
+    "Sponsorship": 250000,
+    "Content_Marketing": 100000,
+    "Affiliates": 50000,
+    "Radio": 150000,
+    "Online_marketing": 150000
+  },
+  "optimized_allocation": {
+    "TV": 262000.0,
+    "Digital": 266000.0,
+    "SEM": 251000.0,
+    "Sponsorship": 267000.0,
+    "Content_Marketing": 100000,
+    "Affiliates": 50000,
+    "Radio": 252000.0,
+    "Online_marketing": 252000.0
+  },
+  "roi_by_channel": {
+    "TV": -1.0000360639648438,
+    "Digital": -0.9998681429036458,
+    "SEM": -1.0008083715820313,
+    "Sponsorship": -1.0003207587890626,
+    "Content_Marketing": -1.00007109375,
+    "Affiliates": -0.99949427734375,
+    "Radio": -1.0000405029296875,
+    "Online_marketing": -1.0001199641927083
+  },
+  "scenarios": [
+    {
+      "Scenario": "Baseline",
+      "Revenue": 39893100.0,
+      "Change": 0.0,
+      "Change_Pct": 0.0
+    },
+    {
+      "Scenario": "Increase Digital 20%",
+      "Revenue": 39893056.0,
+      "Change": -44.0,
+      "Change_Pct": -0.00011029476354451617
+    },
+    {
+      "Scenario": "Decrease TV 30%",
+      "Revenue": 39893104.0,
+      "Change": 4.0,
+      "Change_Pct": 1.0026796815054695e-05
+    },
+    {
+      "Scenario": "Boost Brand Building",
+      "Revenue": 39893056.0,
+      "Change": -44.0,
+      "Change_Pct": -0.00011029476354451617
+    },
+    {
+      "Scenario": "Performance Focus",
+      "Revenue": 39892996.0,
+      "Change": -104.0,
+      "Change_Pct": -0.000260696720033593
+    }
+  ]
+}

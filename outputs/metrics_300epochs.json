@@ -1,0 +1,15 @@
+{
+  "epochs_trained": 218,
+  "best_epoch": 168,
+  "train_loss": 42.45559310913086,
+  "val_loss": 54.971370697021484,
+  "test_loss": 17.326169967651367,
+  "train_r2": -5.227937207605766,
+  "val_r2": -2.4809992915590007,
+  "test_r2": -3.4445139372806084,
+  "test_mae": 3.3057849407196045,
+  "test_mape": 27.392316818237305,
+  "model_parameters": 9995,
+  "features": 37,
+  "beta_gamma_features": 19
+}
